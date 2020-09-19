@@ -18,9 +18,6 @@ import java.util.Objects;
 public class LevelController {
 
     @Autowired
-    private ConfigurableEnvironment configEnv;
-
-    @Autowired
     private Environment env;
 
     @GetMapping("/level")
@@ -29,14 +26,4 @@ public class LevelController {
         return levelNumber < 1 ? "basic" : "advanced";
     }
 
-    @GetMapping("/level/{levelNumber}")
-    public String updateSystemName(@PathVariable String levelNumber) {
-
-        MutablePropertySources propertySources = configEnv.getPropertySources();
-        Map<String, Object> map = Collections.singletonMap("levelNumber", levelNumber);
-        propertySources.addFirst(new MapPropertySource("new", map));
-
-        return env.getProperty("levelNumber");
-
-    }
 }
