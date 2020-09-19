@@ -1,7 +1,6 @@
 package com.thoughtworks.capability.gtb.demospringconfig.controller;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -29,11 +28,10 @@ class LevelControllerTest {
     private ConfigurableEnvironment configEnv;
 
     @AfterEach
-    void tearDown() throws Exception {
+    void tearDown(){
         MutablePropertySources propertySources = configEnv.getPropertySources();
         Map<String, Object> map = Collections.singletonMap("levelNumber", 0);
         propertySources.addFirst(new MapPropertySource("new", map));
-
     }
 
     @Test
